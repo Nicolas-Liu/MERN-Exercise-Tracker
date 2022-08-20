@@ -4,8 +4,8 @@ import { AppBar, Box, IconButton, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import MenuItem from "@mui/material/MenuItem";
-import Menu from '@mui/material/Menu';
-import { Link } from "react-router-dom";
+import Menu from "@mui/material/Menu";
+import {Link} from "react-router-dom";
 
 const Navbar = () => {
   const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -37,20 +37,24 @@ const Navbar = () => {
             <Typography variant="h6" component="div" sx={{ flexGrow: 7 }}>
               Exercise Tracker
             </Typography>
-            <Box sx={{ flexGrow: 0, display: { xs: "none", md: "flex" } }}>
-              <Button sx={{ my: 2, color: "white", display: "block" }}>
-                {/* <Link to="/">Exercises</Link> */}
-                Exercises
-              </Button>
-              <Button sx={{ my: 2, color: "white", display: "block" }}>
-                Workout Log
-              </Button>
-              <Button sx={{ my: 2, color: "white", display: "block" }}>
-                Create User
-              </Button>
-              
-            </Box>
-            
+                <Box sx={{ flexGrow: 0, display: { xs: "none", md: "flex" } }}>
+                  <Link to="/">
+                    <Button sx={{ my: 2, color: "white", display: "block" }}>
+                      {/* <Link to ="/log">Exercises</Link> */}
+                      Exercises
+                    </Button>
+                  </Link>
+                  <Link to="/log">
+                    <Button sx={{ my: 2, color: "white", display: "block" }}>
+                      Workout Log
+                    </Button>
+                  </Link>
+                  <Link to="/createUser">
+                    <Button sx={{ my: 2, color: "white", display: "block" }}>
+                      Create User
+                    </Button>
+                  </Link>
+                </Box>
             {/* <Button color="inherit"></Button> */}
             <IconButton
               sx={{ p: 0 }}
@@ -60,17 +64,17 @@ const Navbar = () => {
               <Avatar alt="Nicolas Sharp" src="/static/images/avatar/2.jpg" />
             </IconButton>
             <Menu
-              sx={{ mt: '45px' }}
+              sx={{ mt: "45px" }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
