@@ -47,11 +47,11 @@ const LoggedExercise = () => {
   }
 
   const rows = [
-    createData("Frozen yoghurt", "Bike ride", 6.0, 24, 4.0),
-    createData("Ice cream sandwich", "Run", 9.0, 37, 4.3),
-    createData("Eclair", "Boxing", 16.0, 24, 6.0),
-    createData("Cupcake", "Boxing", 3.7, 67, 4.3),
-    createData("Gingerbread", "Boxing", 16.0, 49, 3.9),
+    createData("Nicolas", "Bike ride", 6.0, 24, 4.0),
+    createData("Nicolas", "Run", 9.0, 37, 4.3),
+    createData("Nicolas", "Boxing", 16.0, 24, 6.0),
+    createData("Nicolas", "Boxing", 3.7, 67, 4.3),
+    createData("Nicolas", "Boxing", 16.0, 49, 3.9),
   ];
 
   return (
