@@ -5,10 +5,10 @@ import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const settings = ["Profile", "Account", "Dashboard", "Logout"];
+  const settings = ["Profile", "Logout"];
 
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
@@ -34,28 +34,28 @@ const Navbar = () => {
               aria-label="menu"
               sx={{ mr: 2 }}
             ></IconButton>
+
             <Typography variant="h6" component="div" sx={{ flexGrow: 7 }}>
-              Exercise Tracker
+              <Link to="/" style={{ textDecoration: 'none', color: "white" }}>Exercise Tracker</Link>
             </Typography>
-                <Box sx={{ flexGrow: 0, display: { xs: "none", md: "flex" } }}>
-                  <Link to="/">
-                    <Button sx={{ my: 2, color: "white", display: "block" }}>
-                      {/* <Link to ="/log">Exercises</Link> */}
-                      Exercises
-                    </Button>
-                  </Link>
-                  <Link to="/log">
-                    <Button sx={{ my: 2, color: "white", display: "block" }}>
-                      Workout Log
-                    </Button>
-                  </Link>
-                  <Link to="/createUser">
-                    <Button sx={{ my: 2, color: "white", display: "block" }}>
-                      Create User
-                    </Button>
-                  </Link>
-                </Box>
-            {/* <Button color="inherit"></Button> */}
+
+            <Box sx={{ flexGrow: 0, display: { xs: "none", md: "flex" } }}>
+              <Link to="/exercise" style={{ textDecoration: 'none'}}>
+                <Button sx={{ my: 2, color: "white", display: "block" }}>
+                  Create Exercise
+                </Button>
+              </Link>
+              <Link to="/log" style={{ textDecoration: 'none'}}>
+                <Button sx={{ my: 2, color: "white", display: "block" }}>
+                  Workout Log
+                </Button>
+              </Link>
+              <Link to="/createUser" style={{ textDecoration: 'none'}}>
+                <Button sx={{ my: 2, color: "white", display: "block" }}>
+                  Create User
+                </Button>
+              </Link>
+            </Box>
             <IconButton
               sx={{ p: 0 }}
               style={{ marginLeft: "2em" }}

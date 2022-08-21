@@ -7,9 +7,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Pagination from "@mui/material/Pagination";
 
 const LoggedExercise = () => {
-
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.common.black,
@@ -45,20 +45,23 @@ const LoggedExercise = () => {
       protein: Actions,
     };
   }
-
+  const currentTime = new Date().toISOString();
   const rows = [
-    createData("Nicolas", "Bike ride", 6.0, 24, 4.0),
-    createData("Nicolas", "Run", 9.0, 37, 4.3),
-    createData("Nicolas", "Boxing", 16.0, 24, 6.0),
-    createData("Nicolas", "Boxing", 3.7, 67, 4.3),
-    createData("Nicolas", "Boxing", 16.0, 49, 3.9),
+    createData("Nicolas", "Bike ride", 60, currentTime, 4.0),
+    createData("Nicolas", "Run", 90, currentTime, 4.3),
+    createData("Nicolas", "Boxing", 60, currentTime, 6.0),
+    createData("Nicolas", "Boxing", 30, currentTime, 4.3),
+    createData("Nicolas", "Boxing", 100, currentTime, 3.9),
   ];
 
   return (
     <>
       <div className="le-big-container">
-        <div className="loggedTitle-container" style={{ marginTop: "1em", marginBottom:"5px" }}>
-          <h2>Logged Exercises</h2>
+        <div
+          className="loggedTitle-container"
+          style={{ marginTop: "1em", marginBottom: "8px" }}
+        >
+          <h3>Logged Exercises</h3>
         </div>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -88,6 +91,9 @@ const LoggedExercise = () => {
             </TableBody>
           </Table>
         </TableContainer>
+        <div className="bottom-page-container">
+          <Pagination count={10} color="primary" />
+        </div>
       </div>
     </>
   );

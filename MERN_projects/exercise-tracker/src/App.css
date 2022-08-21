@@ -45,3 +45,61 @@
   max-width: 95%;
   margin: 0 auto;
 }
+
+.lower-user-container{
+  padding-top: 1em;
+  max-width: 95%;
+  margin: 0 auto;
+}
+
+.bottom-page-container{
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 5px;
+}
+
+.input-container{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.input-spacing{
+  margin: 5px 0px;
+}
+
+.background-pic{
+  position: fixed;
+    height: 100vh;
+    filter: blur(4px);
+    -webkit-filter: blur(4px);
+    width: 100%;
+    /* background-image: url('https://media.istockphoto.com/illustrations/abstract-silhouette-kickboxing-3-illustration-id1204828733?k=20&m=1204828733&s=612x612&w=0&h=F7oWiSOGjuhngswhVWI7p-6SEri5KchyPxZ4eFcivew='); */
+}
+
+.main-container{
+  position:relative;
+  color:white;
+  margin:5%;
+}
+
+.first-title{
+  font-size: 3.2em;
+  animation: 2s fade-in;
+  text-shadow: 3px 3px 2px #474747;
+}
+
+@keyframes fade-in {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+.sub-title{
+  animation-delay: 1s;
+  text-shadow: 2px 2px 1px #474747;
+  animation: 4s fade-in;
+}
