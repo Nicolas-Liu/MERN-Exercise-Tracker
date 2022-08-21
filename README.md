@@ -1,5 +1,5 @@
 # MERN-Exercise-Tracker
-MERN stack application
+MERN stack web application
 
 
 
