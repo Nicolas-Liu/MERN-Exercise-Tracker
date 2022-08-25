@@ -1,4 +1,4 @@
-# MERN-Exercise-Tracker
+# MERN-Exercise-Tracker (WIP)
 MERN stack web application
 
 
