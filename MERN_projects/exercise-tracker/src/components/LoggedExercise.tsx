@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -8,8 +8,11 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Pagination from "@mui/material/Pagination";
+import axios from "axios";
 
 const LoggedExercise = () => {
+  const [exercises, setExercises] = useState<any[]>([]);
+
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.common.black,
@@ -39,10 +42,10 @@ const LoggedExercise = () => {
   ) {
     return {
       name,
-      calories: Description,
-      fat: Duration,
-      carbs: Date,
-      protein: Actions,
+      description: Description,
+      duration: Duration,
+      date: Date,
+      actions: Actions,
     };
   }
   const currentTime = new Date().toISOString();
@@ -54,6 +57,38 @@ const LoggedExercise = () => {
     createData("Nicolas", "Boxing", 100, currentTime, 3.9),
   ];
 
+  const getExercises = () => {
+    axios
+      .get("http://localhost:5000/exercises/")
+      .then((response) => {
+        console.log("exercises", response.data);
+        setExercises(response.data);
+      })
+      .catch((error) => {
+        console.log("Error in getting exercises ", error);
+      });
+  };
+  useEffect(() => {
+    getExercises();
+    let getExerciseTimer = setInterval(() => {
+      getExercises();
+    }, 10000);
+    return () => clearInterval(getExerciseTimer);
+  }, []);
+
+  const deleteExercise = (id: any) => {
+    axios
+      .delete("http://localhost:5000/exercises/" + id)
+      .then((response) => {
+        response.data.filter((el:any) => el._id !== id);
+      })
+      .catch((error) => {
+        console.log("Error in deleting exercise ", error);
+      });
+  };
+  function capitalizeFirstLetter(string:any) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
   return (
     <>
       <div className="le-big-container">
@@ -75,17 +110,28 @@ const LoggedExercise = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
-                <StyledTableRow key={row.name}>
+              {exercises.map((row, _id) => (
+                <StyledTableRow key={_id}>
                   <StyledTableCell component="th" scope="row">
-                    {row.name}
+                    {capitalizeFirstLetter(row.username)}
                   </StyledTableCell>
                   <StyledTableCell align="right">
-                    {row.calories}
+                    {capitalizeFirstLetter(row.description)}
                   </StyledTableCell>
-                  <StyledTableCell align="right">{row.fat}</StyledTableCell>
-                  <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-                  <StyledTableCell align="right">{row.protein}</StyledTableCell>
+                  <StyledTableCell align="right">
+                    {row.duration}
+                  </StyledTableCell>
+                  <StyledTableCell align="right">
+                    {row.updatedAt}
+                  </StyledTableCell>
+
+                  <StyledTableCell
+                    onClick={deleteExercise}
+                    style={{ color: "blue", cursor: "pointer" }}
+                    align="right"
+                  >
+                    Delete
+                  </StyledTableCell>
                 </StyledTableRow>
               ))}
             </TableBody>
@@ -100,3 +146,6 @@ const LoggedExercise = () => {
 };
 
 export default LoggedExercise;
+function deleteExercise(id: any) {
+  throw new Error("Function not implemented.");
+}
