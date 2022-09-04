@@ -9,6 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Pagination from "@mui/material/Pagination";
 import axios from "axios";
+import { StringExpressionOperator } from "mongoose";
 
 const LoggedExercise = () => {
   const [exercises, setExercises] = useState<any[]>([]);
@@ -37,7 +38,6 @@ const LoggedExercise = () => {
     axios
       .get("http://localhost:5000/exercises/")
       .then((response) => {
-        console.log("exercises", response.data);
         setExercises(response.data);
       })
       .catch((error) => {
@@ -48,21 +48,21 @@ const LoggedExercise = () => {
     getExercises();
     let getExerciseTimer = setInterval(() => {
       getExercises();
-    }, 10000);
+    }, 5000);
     return () => clearInterval(getExerciseTimer);
   }, []);
 
-  const deleteExercise = (id: any) => {
+  const deleteExercise = (id: string) => {
     axios
       .delete("http://localhost:5000/exercises/" + id)
       .then((response) => {
-        response.data.filter((el:any) => el._id !== id);
+        response.data.filter((el: any) => el._id !== id);
       })
       .catch((error) => {
         console.log("Error in deleting exercise ", error);
       });
   };
-  function capitalizeFirstLetter(string:any) {
+  function capitalizeFirstLetter(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
   return (
@@ -86,8 +86,8 @@ const LoggedExercise = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {exercises.map((row, _id) => (
-                <StyledTableRow key={_id}>
+              {exercises.map((row) => (
+                <StyledTableRow key={row._id}>
                   <StyledTableCell component="th" scope="row">
                     {capitalizeFirstLetter(row.username)}
                   </StyledTableCell>
@@ -100,9 +100,11 @@ const LoggedExercise = () => {
                   <StyledTableCell align="right">
                     {row.updatedAt}
                   </StyledTableCell>
-
+                  <StyledTableCell style={{ display: "none" }}>
+                    {row._id}
+                  </StyledTableCell>
                   <StyledTableCell
-                    onClick={deleteExercise}
+                    onClick={() => deleteExercise(row._id)}
                     style={{ color: "blue", cursor: "pointer" }}
                     align="right"
                   >
@@ -122,4 +124,3 @@ const LoggedExercise = () => {
 };
 
 export default LoggedExercise;
-
