@@ -140,7 +140,7 @@ const Exercise = () => {
             <div className="input-spacing">
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DesktopDatePicker
-                  label="Date desktop"
+                  label="Date"
                   inputFormat="MM/dd/yyyy"
                   value={dateValue}
                   onChange={handleDateChange}
