@@ -1,5 +1,11 @@
 # MERN-Exercise-Tracker (Full Stack Application)
-MERN stack web application
+<b>MERN stack web application</b>
+
+Front-End: React, TypeScript, MaterialUI, CSS
+<br>
+Back-End: NodeJS, ExpressJS
+<br>
+Database: MongoDB
 
 ## Preview
 
