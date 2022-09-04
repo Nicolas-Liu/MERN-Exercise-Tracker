@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import DateFnsUtils from "@date-io/date-fns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import TextField from "@mui/material/TextField";
@@ -10,7 +9,7 @@ import Success from "./Success";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 
 const Exercise = () => {
   const [userName, setUserName] = useState<string>("");
@@ -29,6 +28,7 @@ const Exercise = () => {
   const onChangeDuration = (e: any) => {
     setDuration(e.target.value);
   };
+
   const onChangeUsers = (e: any) => {
     setUsers(e.target.value);
   };
@@ -77,12 +77,11 @@ const Exercise = () => {
             username: response.data[0].username,
           });
         }
-        console.log("users", users.users);
       })
       .catch((error) => {
         console.log("Error in getting users ", error);
       });
-  }, [users.users]);
+  }, [users]);
 
   return (
     <>
@@ -98,16 +97,8 @@ const Exercise = () => {
 
           <div className="input-container">
             <div className="input-spacing">
-              {/* <TextField
-                id="outlined-basic"
-                label="Username"
-                variant="outlined"
-                type="text"
-                value={userName}
-                onChange={onChangeUserName}
-              /> */}
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Username</InputLabel>
+                <InputLabel id="demo-simple-select-label">User</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
@@ -115,16 +106,11 @@ const Exercise = () => {
                   label="Age"
                   onChange={onChangeUserName}
                 >
-                  {/* {users.users &&
-                    users.users.map((user: any) => {
-                      <div>{user}</div>;
-                    })} */}
-                  {/* <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem> */}
+                  {users.users && users.users.map((item:any, key:number)=>{
+                    return(
+                      <MenuItem value={item} key={key}>{item}</MenuItem>
+                    )
+                  })}
                 </Select>
               </FormControl>
             </div>
