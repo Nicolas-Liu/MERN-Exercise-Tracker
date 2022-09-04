@@ -1,9 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import TextField from "@mui/material/TextField";
-import Stack from "@mui/material/Stack";
-import Autocomplete from "@mui/material/Autocomplete";
 import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
 import axios from "axios";
 import Success from "./Success";
 
@@ -49,7 +46,7 @@ const CreateUser = () => {
           </div>
           <TextField
             id="filled-multiline-flexible"
-            label="Username"
+            label="User"
             multiline
             maxRows={4}
             value={userName}

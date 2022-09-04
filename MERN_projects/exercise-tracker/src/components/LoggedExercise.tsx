@@ -33,30 +33,6 @@ const LoggedExercise = () => {
     },
   }));
 
-  function createData(
-    name: string,
-    Description: string,
-    Duration: number,
-    Date: any,
-    Actions: any
-  ) {
-    return {
-      name,
-      description: Description,
-      duration: Duration,
-      date: Date,
-      actions: Actions,
-    };
-  }
-  const currentTime = new Date().toISOString();
-  const rows = [
-    createData("Nicolas", "Bike ride", 60, currentTime, 4.0),
-    createData("Nicolas", "Run", 90, currentTime, 4.3),
-    createData("Nicolas", "Boxing", 60, currentTime, 6.0),
-    createData("Nicolas", "Boxing", 30, currentTime, 4.3),
-    createData("Nicolas", "Boxing", 100, currentTime, 3.9),
-  ];
-
   const getExercises = () => {
     axios
       .get("http://localhost:5000/exercises/")
@@ -102,7 +78,7 @@ const LoggedExercise = () => {
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell>Username</StyledTableCell>
+                <StyledTableCell>User</StyledTableCell>
                 <StyledTableCell align="right">Description</StyledTableCell>
                 <StyledTableCell align="right">Duration</StyledTableCell>
                 <StyledTableCell align="right">Date</StyledTableCell>
@@ -146,6 +122,4 @@ const LoggedExercise = () => {
 };
 
 export default LoggedExercise;
-function deleteExercise(id: any) {
-  throw new Error("Function not implemented.");
-}
+
